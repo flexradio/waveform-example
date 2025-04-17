@@ -1,0 +1,12 @@
+buildType:
+  default: debug
+  description: My build types
+  choices:
+    debug:
+      short: debug
+      long: Build with debugging enabled
+      buildType: Debug
+    release:
+      short: release
+      long: Release Build
+      buildType: Release

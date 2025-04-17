@@ -1,0 +1,13 @@
+{
+    "cmake.buildDirectory": "${workspaceFolder}/build-${variant:buildType}-${buildKit}",
+    "cmake.generator": "Ninja",
+    "files.associations": {
+        "**/*.h": "c",
+        "**/*.c": "c",
+        "**/*.cpp": "cpp",
+        "**/*.hpp": "cpp",
+    },
+    "gotoSymbolStack.currentStackPosition": 0,
+    "gotoSymbolStack.maxStackPosition": 0,
+    "gotoSymbolStack.filePositionInfo": []
+}

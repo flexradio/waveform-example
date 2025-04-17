@@ -1,0 +1,13 @@
+[
+      {
+            "name": "cross-compile",
+            "toolchainFile": "/opt/x-tools/bigbend/share/aarch64-bigbend-linux.cmake"
+      },
+      {
+        "name": "native",
+        "compilers": {
+            "CC": "/usr/bin/gcc",
+            "CXX": "/usr/bin/g++"
+        }
+      }
+]
