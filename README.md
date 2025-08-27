@@ -28,3 +28,33 @@ you how to use the FindPackage functionality to set up the proper include and li
 for a successful compile.  We highly recommend that you statically compile your waveform
 for now, as the waveform library nor any of the support libraries are available on the radio.
 This may change in the future.
+
+Creating a Waveform Package for a Waveform Processor Equipped Radio
+------
+
+The Waveform Processor (WFP) uses Docker technology for deployment of the waveform code.  The
+radio will accept either compressed or uncompressed OCI images for the `linux/arm64` platform for
+deployment to the WFP.
+
+Your container should arrange to run your waveform code and include everything necessary for that task such as any
+configuration or shared libraries.  While any container base is supported, remember that there is limited
+storage space on the WFP for waveform images.
+
+The container will be run with "host" networking on the WFP.  This means that you are sharing the networking stack
+with any other waveforms that may be running on the WFP.  You should avoid binding specific IP ports in your waveform
+and favor ephemeral ports as much as possible.  The `libwaveform` library conforms to this standard.
+
+The IP address of the radio will be provided to the waveform code in an environment variable named `SSDR_RADIO_ADDRESS`
+and it should be used for all radio communications.
+
+FlexRadio has provided a base container for building wavforms on Alpine Linux on DockerHub named 
+`flexradio/wfsdk-dev:alpine`.  This should include the compiler and the development environment for the `libwaveform`
+library so that you can successfully create a waveform deployable in a very small container.
+
+An example of creating a waveform distribution for a WFP is provided in the Dockerfile in this repository.  You can
+build the waveform with the following command:
+
+`docker buildx build --output type=oci,compression=gzip,dest=example.tar.gz --tag=example .`
+
+We highly recommend that you use a compressed OCI image to save space in temporary directories on the radio during
+the deployment process.
